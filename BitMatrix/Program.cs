@@ -4,7 +4,17 @@
     {
         static void Main(string[] args)
         {
-            
+            // Equals dla parametru `null`
+            BitMatrix m1 = new BitMatrix(1, 1);
+            Console.WriteLine(m1.Equals(null));
+
+            // `Equals` różne wartości komórek
+            var m2 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            var m3 = new BitMatrix(2, 3, 0, 0, 0, 1, 1, 1);
+            Console.WriteLine(m1.Equals(m3));
+            m2 = new BitMatrix(1, 1, 0);
+            m3 = new BitMatrix(1, 1, 1);
+            Console.WriteLine(m2.Equals(m3));
         }
 
         void Step1()
@@ -44,6 +54,39 @@
             Console.WriteLine(arr.GetLength(0) == f.NumberOfRows);
             Console.WriteLine(arr.GetLength(1) == f.NumberOfColumns);
             Console.Write(f.ToString());
+        }
+
+        void Step3()
+        {
+            // `Equals` różne wartości komórek
+            var m1 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            var m2 = new BitMatrix(2, 3, 0, 0, 0, 1, 1, 1);
+            Console.WriteLine(m1.Equals(m2));
+            m1 = new BitMatrix(1, 1, 0);
+            m2 = new BitMatrix(1, 1, 1);
+            Console.WriteLine(m1.Equals(m2));
+
+            // `Equals` te same wartości
+            var m3 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            var m4 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            Console.WriteLine(m3.Equals(m4));
+            m3 = new BitMatrix(1, 1, 0);
+            m4 = new BitMatrix(1, 1, 0);
+            Console.WriteLine(m3.Equals(m4));
+
+            // operator `==`, `!=`
+            // zgodne wartości
+            var m5 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            var m6 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
+            Console.WriteLine(m5 != m6);
+            Console.WriteLine(m5 == m6);
+            Console.WriteLine(m6 != m5);
+            Console.WriteLine(m6 == m5);
+
+            m5 = new BitMatrix(1, 1, 1);
+            m6 = new BitMatrix(1, 1, 1);
+            Console.WriteLine(m5 == m6);
+            Console.WriteLine(m5 != m6);
         }
     }
 }

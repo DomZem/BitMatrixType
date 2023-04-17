@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BitMatrix
 {
-    public partial class BitMatrix
+    public partial class BitMatrix: IEquatable<BitMatrix>
     {
         private BitArray data;
         public int NumberOfRows { get; }
