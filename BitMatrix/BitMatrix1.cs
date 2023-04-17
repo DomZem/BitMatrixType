@@ -1,21 +1,24 @@
-﻿namespace BitMatrix
+﻿using System.Text;
+
+namespace BitMatrix
 {
     partial class BitMatrix
     {
         public override string ToString()
         {
-            string result = "";
-                
-            for(int i = 0; i < NumberOfRows; i++)
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < NumberOfRows; i++)
             {
-                for(int j = 0; j < NumberOfColumns; j++)
+                for (int j = 0; j < NumberOfColumns; j++)
                 {
-                    result += (data[i] == false ? "0" : "1");
+                    
+                    sb.Append(BoolToBit(data[i * NumberOfColumns + j]) == 1 ? '1' : '0');
                 }
-                result += $"{Environment.NewLine}";
+                sb.Append(Environment.NewLine);
             }
-            
-            return result;
+
+            return sb.ToString();
         }
     }
 }
