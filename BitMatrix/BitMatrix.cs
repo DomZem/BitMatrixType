@@ -2,7 +2,7 @@
 
 namespace BitMatrix
 {
-    public partial class BitMatrix: IEquatable<BitMatrix>, IEnumerable<int>
+    public partial class BitMatrix: IEquatable<BitMatrix>, IEnumerable<int>, ICloneable
     {
         private BitArray data;
         public int NumberOfRows { get; }

@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-           
+
         }
 
         static void Step1()
@@ -102,6 +102,28 @@
             foreach (var x in n)
                 s += x;
             Console.WriteLine(expected == s);
+        }
+
+        static void Step5()
+        {
+            // weryfikacja implementacji
+            // interfejsu `ICloneable`
+            var m1 = new BitMatrix(1, 1);
+            Console.WriteLine(m1 is ICloneable);
+
+            // sprawdzenie, czy tworzona
+            // jest niezależna kopia
+            var m2 = new BitMatrix(2, 3);
+            var m3 = (BitMatrix)(m2.Clone());
+            m2[0, 0] = 1;
+            Console.WriteLine(m2[0, 0] != m3[0, 0]);
+
+            // sprawdzenie, czy
+            // klon ma takie same wymiary
+            var m4 = new BitMatrix(2, 3);
+            var m5 = (BitMatrix)(m4.Clone());
+            Console.WriteLine(m4.NumberOfRows == m5.NumberOfRows);
+            Console.WriteLine(m4.NumberOfColumns == m5.NumberOfColumns);
         }
     }
 }
