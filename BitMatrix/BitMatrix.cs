@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace BitMatrix
 {
-    public partial class BitMatrix: IEquatable<BitMatrix>
+    public partial class BitMatrix: IEquatable<BitMatrix>, IEnumerable<int>
     {
         private BitArray data;
         public int NumberOfRows { get; }

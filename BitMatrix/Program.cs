@@ -4,20 +4,10 @@
     {
         static void Main(string[] args)
         {
-            // Equals dla parametru `null`
-            BitMatrix m1 = new BitMatrix(1, 1);
-            Console.WriteLine(m1.Equals(null));
-
-            // `Equals` różne wartości komórek
-            var m2 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
-            var m3 = new BitMatrix(2, 3, 0, 0, 0, 1, 1, 1);
-            Console.WriteLine(m1.Equals(m3));
-            m2 = new BitMatrix(1, 1, 0);
-            m3 = new BitMatrix(1, 1, 1);
-            Console.WriteLine(m2.Equals(m3));
+           
         }
 
-        void Step1()
+        static void Step1()
         {
             // macierz bitów 4x3 wypełniona
             // domyślną wartością
@@ -29,7 +19,8 @@
             Console.WriteLine(m);
 
         }
-        void Step2()
+
+        static void Step2()
         {
             // konstruktor BitMatrix(int, int, params int[])
             // macierz 2x2, komplet danych w tablicy
@@ -56,7 +47,7 @@
             Console.Write(f.ToString());
         }
 
-        void Step3()
+        static void Step3()
         {
             // `Equals` różne wartości komórek
             var m1 = new BitMatrix(2, 3, 1, 1, 1, 0, 0, 0);
@@ -87,6 +78,30 @@
             m6 = new BitMatrix(1, 1, 1);
             Console.WriteLine(m5 == m6);
             Console.WriteLine(m5 != m6);
+        }
+
+        static void Step4()
+        {
+            // indekser - poprawne indeksy
+            var m = new BitMatrix(3, 4);
+            m[0, 0] = 1;
+            Console.WriteLine(m[0, 0]);
+
+            m[2, 3] = 1;
+            Console.WriteLine(m[2, 3]);
+
+            m[1, 1] = 1;
+            Console.WriteLine(m[1, 1]);
+
+            // forach - poprawny porządek
+            var n = new BitMatrix(2, 2);
+            n[0, 1] = 1;
+            n[1, 0] = 1;
+            var expected = "0110";
+            string s = "";
+            foreach (var x in n)
+                s += x;
+            Console.WriteLine(expected == s);
         }
     }
 }
