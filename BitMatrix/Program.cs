@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-
+            
         }
 
         static void Step1()
@@ -124,6 +124,45 @@
             var m5 = (BitMatrix)(m4.Clone());
             Console.WriteLine(m4.NumberOfRows == m5.NumberOfRows);
             Console.WriteLine(m4.NumberOfColumns == m5.NumberOfColumns);
+        }
+
+        static void Step6()
+        {
+            // Parse, dane poprawne
+            string s = @"1111
+0000
+1100";
+            Console.WriteLine(BitMatrix.Parse(s));
+
+            s = @"11
+00
+11";
+            Console.WriteLine(BitMatrix.Parse(s));
+
+            s = @"1";
+            Console.WriteLine(BitMatrix.Parse(s));
+
+            s = @"1101";
+            Console.WriteLine(BitMatrix.Parse(s));
+
+            // TryParse, poprawne dane
+            BitMatrix m = null;
+            string s2 = @"1111
+0000
+1100";
+            Console.WriteLine(
+              BitMatrix.TryParse(s2, out m)
+            );
+            s2 = @"1";
+            Console.WriteLine(
+              BitMatrix.TryParse(s2, out m)
+            );
+            s2 = @"11
+00
+11";
+            Console.WriteLine(
+              BitMatrix.TryParse(s2, out m)
+            );
         }
     }
 }
