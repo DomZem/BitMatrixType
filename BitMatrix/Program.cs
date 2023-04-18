@@ -1,4 +1,6 @@
-﻿namespace BitMatrix
+﻿using System.Collections;
+
+namespace BitMatrix
 {
     internal class Program
     {
@@ -163,6 +165,68 @@
             Console.WriteLine(
               BitMatrix.TryParse(s2, out m)
             );
+        }
+
+        static void Step7()
+        {
+            // konwersja jawna z `int[,]` na `BitMatrix`
+            // dane poprawne
+            string s1 = @"01
+10
+";
+            int[,] a1 = new int[,] { { 0, 1 }, { 1, 0 } };
+            var m1 = (BitMatrix)a1;
+            Console.WriteLine(2 == m1.NumberOfRows);
+            Console.WriteLine(2 == m1.NumberOfColumns);
+            Console.WriteLine(s1 == m1.ToString());
+
+            // konwersja jawna z `bool[,]` na `BitMatrix`
+            // dane poprawne
+            string s2 = @"011
+101
+";
+            bool[,] a2 = new bool[,] {
+{ false, true, true },
+{ true, false, true } };
+            var m2 = (BitMatrix)a2;
+            Console.WriteLine(2 == m2.NumberOfRows);
+            Console.WriteLine(3 == m2.NumberOfColumns);
+            Console.WriteLine(s2 == m2.ToString());
+
+            // konwersja niejawna z `int[,]` na `BitMatrix`
+            // dane poprawne
+            var m3 = new BitMatrix(2, 3, 1, 0, 1, 1, 1, 0);
+            int[,] a3 = m3;
+            Console.WriteLine(m3.NumberOfRows == a3.GetLength(0));
+            Console.WriteLine(m3.NumberOfColumns == a3.GetLength(1));
+            for (int i = 0; i < m3.NumberOfRows; i++)
+                for (int j = 0; j < m3.NumberOfColumns; j++)
+                {
+                    if (m3[i, j] != a3[i, j])
+                    {
+                        Console.WriteLine("Fail");
+                        return;
+                    }
+                }
+            Console.WriteLine("Pass");
+
+            // konwersja `BitMatrix` na `BitArray`
+            var m4 = new BitMatrix(2, 3, 1, 0, 1, 1, 1, 0);
+            BitArray bitArr = (BitArray)m4;
+
+            Console.WriteLine(m4.NumberOfRows * m4.NumberOfColumns == bitArr.Count);
+
+            for (int i = 0; i < m4.NumberOfRows; i++)
+                for (int j = 0; j < m4.NumberOfColumns; j++)
+                    if (m4[i, j] != BitMatrix.BoolToBit(bitArr[i * m4.NumberOfColumns + j]))
+                    {
+                        Console.WriteLine("Fail");
+                        return;
+                    }
+
+            // czy niezależna kopia
+            m4[1, 2] = 1;
+            Console.WriteLine(m4[1, 2] != BitMatrix.BoolToBit(bitArr[5]));
         }
     }
 }
